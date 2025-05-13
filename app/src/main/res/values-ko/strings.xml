@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">차지노트</string>
+    <string name="main_empty_list">아직 기록이 없어요\n기록을 시작해보세요!</string>
+    <string name="submit">기록 추가히기</string>
+    <string name="add_car_nickname">애칭</string>
+    <string name="add_car_number_plate">자동차 번호</string>
+    <string name="add_car_mileage">누적주행거리(Km)</string>
+    <string name="add_car_capacity">배터리 용량(kWh)</string>
+    <string name="add_car_initial_battery">현재 배터리 잔량(%)</string>
+    <string name="confirm">확인</string>
+    <string name="add_car">차량 추가하기</string>
+    <string name="add_car_error_confirm">모든 항목을 입력해주세요</string>
+    <string name="add_record">기록하기</string>
+    <string name="add_record_cost">총금액(원/KRW)</string>
+    <string name="add_record_charge_amount">충전량(kWh)</string>
+    <string name="add_record_date">날짜</string>
+    <string name="record_car_battery_remaining_after_charging">충전 후 잔량(%)</string>
+    <string name="back_alert_message">작성한 내용이 사라집니다.\n뒤로 가시겠습니까?</string>
+    <string name="yes">예</string>
+    <string name="no">아니오</string>
+    <string name="app_bar_remove">지우기</string>
+    <string name="app_bar_edit_car">차량 정보 수정하기</string>
+    <string name="car_remove_alert">차량 기록이 모두 삭제되고 복원할 수 없습니다.\n삭제하시겠습니까?</string>
+    <string name="record_remove_alert">삭제하시겠습니까?</string>
+    <string name="alert_record_current_batter">1~100 사이의 값만 입력 가능합니다</string>
+    <string name="error_text_field">올바른 값을 입력해주세요</string>
+    <string name="unit_krw">원</string>
+    <string name="error_mileage_field">%s 사이의 값을 입력하세요</string>
+
+</resources>

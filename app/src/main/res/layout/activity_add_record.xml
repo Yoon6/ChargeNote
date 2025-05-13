@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddRecordActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_theme_primary"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/app_bar_edit"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationIconTint="@color/md_theme_onPrimary"
+        app:subtitleTextColor="@color/md_theme_onPrimary"
+        app:title="@string/add_record"
+        app:titleTextColor="@color/md_theme_onPrimary" />
+
+    <TextView
+        android:id="@+id/tv_appbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/md_theme_primary"
+        android:paddingHorizontal="@dimen/padding_title_h"
+        android:paddingVertical="@dimen/padding_title_v"
+        android:text="@string/add_record"
+        android:textColor="@color/md_theme_onPrimary"
+        android:textSize="@dimen/tv_title_size"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_l"
+                android:layout_marginVertical="@dimen/margin_xl"
+                android:text="@string/add_record_date"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tf_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tf_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/tv_date"
+                app:layout_constraintStart_toStartOf="@id/tv_date"
+                app:layout_constraintTop_toBottomOf="@id/tv_date">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:imeOptions="actionNext"
+                    android:inputType="none"
+                    android:maxLines="1"
+                    android:nextFocusDown="@id/tf_current_mileage" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_current_mileage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_l"
+                android:text="@string/add_car_mileage"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tf_current_mileage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tf_date" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tf_current_mileage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/tv_current_mileage"
+                app:layout_constraintStart_toStartOf="@id/tv_current_mileage"
+                app:layout_constraintTop_toBottomOf="@id/tv_current_mileage">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_current_mileage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:nextFocusDown="@id/tf_cost" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/tv_cost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_l"
+                android:text="@string/add_record_cost"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tf_cost"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tf_current_mileage" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tf_cost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/tv_cost"
+                app:layout_constraintStart_toStartOf="@id/tv_cost"
+                app:layout_constraintTop_toBottomOf="@id/tv_cost">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:nextFocusDown="@id/tf_charge_amount" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_charge_amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_l"
+                android:text="@string/add_record_charge_amount"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tf_charge_amount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tf_cost" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tf_charge_amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/tv_charge_amount"
+                app:layout_constraintStart_toStartOf="@id/tv_charge_amount"
+                app:layout_constraintTop_toBottomOf="@id/tv_charge_amount">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_charge_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"
+                    android:nextFocusDown="@id/tf_initial_battery" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_current_battery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_l"
+                android:text="@string/record_car_battery_remaining_after_charging"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tf_current_battery"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tf_charge_amount" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tf_current_battery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/tv_current_battery"
+                app:layout_constraintStart_toStartOf="@id/tv_current_battery"
+                app:layout_constraintTop_toBottomOf="@id/tv_current_battery">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_current_battery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/slider_battery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:stepSize="1.0"
+                android:valueFrom="1.0"
+                android:valueTo="100.0"
+                app:layout_constraintEnd_toEndOf="@id/tf_current_battery"
+                app:layout_constraintStart_toStartOf="@id/tf_current_battery"
+                app:layout_constraintTop_toBottomOf="@id/tf_current_battery" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_l"
+        android:layout_marginVertical="@dimen/margin_m"
+        android:paddingVertical="@dimen/margin_l"
+        android:text="@string/confirm"
+        android:textSize="@dimen/btn_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">ChargeNote</string>
+    <string name="main_empty_list">No charging records yet\ntime to start your first one!</string>
+    <string name="submit">Add record</string>
+    <string name="add_car_nickname">Nickname</string>
+    <string name="add_car_number_plate">License Plate</string>
+    <string name="add_car_mileage">Mileage(Km)</string>
+    <string name="add_car_capacity">Battery Capacity(kWh)</string>
+    <string name="add_car_initial_battery">Initial battery remaining(%)</string>
+    <string name="confirm">Confirm</string>
+    <string name="add_car">Add My Car</string>
+    <string name="add_car_error_confirm">Please enter all items</string>
+    <string name="add_record">Recording</string>
+    <string name="add_record_cost">Total Amount(KRW)</string>
+    <string name="add_record_charge_amount">Charge Amount(kWh)</string>
+    <string name="add_record_date">Date</string>
+    <string name="record_car_battery_remaining_after_charging">Battery remaining After Charging(%)</string>
+    <string name="back_alert_message">Your changes will be lost. Do you want to go back?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="app_bar_remove">remove</string>
+    <string name="app_bar_edit_car">Edit car info</string>
+    <string name="car_remove_alert">All records will be deleted and cannot be recovered. Are you sure you want to delete them?</string>
+    <string name="record_remove_alert">Are you sure you want to delete them?</string>
+    <string name="alert_record_current_batter">Only values between 1 and 100</string>
+    <string name="error_text_field">Please enter a valid value</string>
+    <string name="unit_krw">Won</string>
+    <string name="error_mileage_field">Please enter the value between %s</string>
+
+</resources>
