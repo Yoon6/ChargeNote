@@ -64,15 +64,14 @@ class AddRecordActivity : AppCompatActivity() {
             val carDao = MyApp.database.carDao()
             val car = carDao.getCarById(uid)
             val recordDao = MyApp.database.drivingRecordDao()
-            val prev =
-                recordDao.getPreviousRecord(uid, selectedDate)?.currentMileage?.toString()
-                    ?: selectedCar.mileage.toString()
+            var prev = recordDao.getPreviousRecord(uid, selectedDate)?.currentMileage?.toString()
             val next = recordDao.getNextRecord(uid, selectedDate)?.currentMileage?.toString() ?: ""
 
             withContext(Dispatchers.Main)
             {
                 car?.let {
                     selectedCar = it
+                    if (prev == null) prev = selectedCar.mileage?.toString()
                     binding.topAppBar.subtitle = it.nickname + " " + it.numberPlate
                     binding.etCurrentMileage.hint = "$prev ~ $next"
                 }

@@ -111,12 +111,13 @@ class MainActivity : AppCompatActivity() {
                 }
                 val recordList = recordDao.getDrivingRecordsByIdOrderByDateAndId(list[0].uid)
                 withContext(Dispatchers.Main) {
-                    binding.layoutInfo.visibility = View.VISIBLE
-                    setCarInfos(recordList)
                     if (recordList.isEmpty().not()) {
+                        binding.layoutInfo.visibility = View.VISIBLE
+                        setCarInfos(recordList)
                         binding.imgEmptyList.visibility = View.INVISIBLE
                         binding.tvEmptyList.visibility = View.INVISIBLE
                     } else {
+                        binding.layoutInfo.visibility = View.GONE
                         binding.imgEmptyList.visibility = View.VISIBLE
                         binding.tvEmptyList.visibility = View.VISIBLE
                     }
@@ -139,6 +140,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setCarInfos(recordList: List<DrivingRecord>) {
+        if (recordList.isEmpty()) {
+            return
+        }
+
         val mileage = String.format("%,d", recordList[recordList.lastIndex].currentMileage) + "Km"
         binding.tvInfoMileage.text = mileage
 
