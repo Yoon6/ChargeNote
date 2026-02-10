@@ -5,8 +5,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isEmpty
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +18,6 @@ import com.daeyoon.chargenote.data.Car
 import com.daeyoon.chargenote.data.DrivingRecord
 import com.daeyoon.chargenote.data.RecordUiData
 import com.daeyoon.chargenote.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -28,10 +31,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT)
+        )
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            binding.topAppBar.setPadding(0, systemBars.top, 0, 0)
+            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
+            insets
+        }
         adapter = RecordListAdapter(object : OnItemClickListener {
             override fun onItemClick(item: RecordUiData) {
                 val intent = Intent(this@MainActivity, AddRecordActivity::class.java)
@@ -157,7 +167,7 @@ class MainActivity : AppCompatActivity() {
         val amount = String.format("%,d", totalAmount) + getString(R.string.unit_krw)
         binding.tvInfoAmount.text = amount
 
-        var distance = (recordList[recordList.lastIndex].currentMileage!! - selectedCar.mileage!!)
+        val distance = (recordList[recordList.lastIndex].currentMileage!! - selectedCar.mileage!!)
         var totalConsumedWattage = 0f
 
         for (i in recordList.lastIndex downTo 0) {
