@@ -3,9 +3,13 @@ package com.daeyoon.chargenote
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.activity.SystemBarStyle
 import androidx.activity.addCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.daeyoon.chargenote.data.Car
@@ -19,8 +23,20 @@ class AddCarActivity : AppCompatActivity() {
     lateinit var binding: ActivityAddCarBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT)
+        )
+
         binding = ActivityAddCarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val ime = insets.getInsets(WindowInsetsCompat.Type.ime())
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            binding.topAppBar.setPadding(0, systemBars.top, 0, binding.topAppBar.titleMarginBottom)
+            v.setPadding(systemBars.left, 0, systemBars.right, maxOf(systemBars.bottom, ime.bottom))
+            insets
+        }
 
         val isEditing = intent.getBooleanExtra("isEditing", false)
         val carId = intent.getIntExtra("carId", 0)

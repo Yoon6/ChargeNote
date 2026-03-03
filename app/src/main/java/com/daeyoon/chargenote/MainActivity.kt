@@ -32,13 +32,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT)
+            statusBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT)
         )
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            binding.topAppBar.setPadding(0, systemBars.top, 0, 0)
+            binding.topAppBar.setPadding(0, systemBars.top, 0, binding.topAppBar.titleMarginBottom)
             v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
             insets
         }
@@ -153,8 +156,7 @@ class MainActivity : AppCompatActivity() {
         if (recordList.isEmpty()) {
             return
         }
-
-        val mileage = String.format("%,d", recordList[recordList.lastIndex].currentMileage) + "Km"
+        val mileage = getString(R.string.format_mileage, recordList[recordList.lastIndex].currentMileage)
         binding.tvInfoMileage.text = mileage
 
         val battery = recordList[0].currentBattery.toString() + "%"
@@ -164,7 +166,7 @@ class MainActivity : AppCompatActivity() {
         for (record in recordList) {
             totalAmount += record.totalAmount!!
         }
-        val amount = String.format("%,d", totalAmount) + getString(R.string.unit_krw)
+        val amount = getString(R.string.format_krw, totalAmount)
         binding.tvInfoAmount.text = amount
 
         val distance = (recordList[recordList.lastIndex].currentMileage!! - selectedCar.mileage!!)
@@ -182,7 +184,7 @@ class MainActivity : AppCompatActivity() {
 
             totalConsumedWattage += consumedWattage
         }
-        val efficiency = String.format("%.1f", distance / totalConsumedWattage) + "Km/kWh"
+        val efficiency = getString(R.string.format_efficiency, distance / totalConsumedWattage)
         binding.tvInfoEfficiency.text = efficiency
     }
 
@@ -193,9 +195,8 @@ class MainActivity : AppCompatActivity() {
             if (i == 0) {
                 val record = recordList[i]
                 val distance = record.currentMileage!! - selectedCar.mileage!!
-                val tripMileage = String.format("%,d", distance) + "Km"
-                val totalAmount =
-                    String.format("%,d", record.totalAmount!!) + getString(R.string.unit_krw)
+                val tripMileage = getString(R.string.format_mileage, distance)
+                val totalAmount = getString(R.string.format_krw, record.totalAmount!!)
                 val date = record.date
                 val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 val formatted = if (date != null) format.format(date) else ""
@@ -206,7 +207,7 @@ class MainActivity : AppCompatActivity() {
                 val consumedWattage =
                     ((battery - batteryBeforeCharging) / 100f) * selectedCar.capacity!!
 
-                val efficiency = String.format("%.2f", distance / consumedWattage) + "Km/kWh"
+                val efficiency = getString(R.string.format_efficiency, distance / consumedWattage)
                 val uiData = RecordUiData(
                     uid = record.uid,
                     efficiency = efficiency,
@@ -221,9 +222,8 @@ class MainActivity : AppCompatActivity() {
                 val prevRecord = recordList[i - 1]
 
                 val distance = curRecord.currentMileage!! - prevRecord.currentMileage!!
-                val tripMileage = String.format("%,d", distance) + "Km"
-                val totalAmount =
-                    String.format("%,d", curRecord.totalAmount!!) + getString(R.string.unit_krw)
+                val tripMileage = getString(R.string.format_mileage, distance)
+                val totalAmount = getString(R.string.format_krw, curRecord.totalAmount!!)
                 val date = curRecord.date
                 val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 val formatted = if (date != null) format.format(date) else ""
@@ -233,8 +233,7 @@ class MainActivity : AppCompatActivity() {
                 val battery = prevRecord.currentBattery!!
                 val consumedWattage =
                     ((battery - batteryBeforeCharging) / 100f) * selectedCar.capacity!!
-
-                val efficiency = String.format("%.2f", distance / consumedWattage) + "Km/kWh"
+                val efficiency = getString(R.string.format_efficiency, distance / consumedWattage)
                 val uiData = RecordUiData(
                     uid = curRecord.uid,
                     efficiency = efficiency,

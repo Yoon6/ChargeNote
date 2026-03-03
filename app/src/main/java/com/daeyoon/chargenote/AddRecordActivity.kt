@@ -1,17 +1,18 @@
 package com.daeyoon.chargenote
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.activity.SystemBarStyle
 import androidx.activity.addCallback
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isInvisible
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
-import androidx.transition.Visibility
 import com.daeyoon.chargenote.data.Car
 import com.daeyoon.chargenote.data.DrivingRecord
 import com.daeyoon.chargenote.databinding.ActivityAddRecordBinding
@@ -20,7 +21,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -31,8 +31,20 @@ class AddRecordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT)
+        )
+
         binding = ActivityAddRecordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val ime = insets.getInsets(WindowInsetsCompat.Type.ime())
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            binding.topAppBar.setPadding(0, systemBars.top, 0, binding.topAppBar.titleMarginBottom)
+            v.setPadding(systemBars.left, 0, systemBars.right, maxOf(systemBars.bottom, ime.bottom))
+            insets
+        }
 
         val uid = intent.getIntExtra("uid", 0)
         val record = intent.getParcelableExtra<DrivingRecord>("record")

@@ -25,7 +25,9 @@
     <string name="record_remove_alert">삭제하시겠습니까?</string>
     <string name="alert_record_current_batter">1~100 사이의 값만 입력 가능합니다</string>
     <string name="error_text_field">올바른 값을 입력해주세요</string>
-    <string name="unit_krw">원</string>
+    <string name="format_krw">%,d원</string>
     <string name="error_mileage_field">%s 사이의 값을 입력하세요</string>
+    <string name="format_mileage">%,dKm</string>
+    <string name="format_efficiency">%.1fKm/kWh</string>
 
 </resources>

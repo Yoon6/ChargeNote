@@ -24,7 +24,10 @@
     <string name="record_remove_alert">Are you sure you want to delete them?</string>
     <string name="alert_record_current_batter">Only values between 1 and 100</string>
     <string name="error_text_field">Please enter a valid value</string>
-    <string name="unit_krw">Won</string>
+    <string name="format_krw">%,dWon</string>
     <string name="error_mileage_field">Please enter the value between %s</string>
+    <string name="format_mileage">%,dKm</string>
+    <string name="format_efficiency">%.1fKm/kWh</string>
+
 
 </resources>
